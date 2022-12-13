@@ -1,3 +1,5 @@
+var headerQuestion = document.querySelector(".header-Question");
+var allH2 = document.querySelectorAll("h2");
 var opt1 = document.querySelector(".option-1");
 var opt2 = document.querySelector(".option-2");
 var opt3 = document.querySelector(".option-3");
@@ -5,8 +7,9 @@ var opt4 = document.querySelector(".option-4");
 var timer = document.querySelector(".Timer");
 var score = document.querySelector(".Score");
 var q1 = document.querySelector(".Questions");
+var optionsAll = document.querySelector(".options");
 var btnStart = document.querySelector(".btn-start");
-var options = [opt1, opt2, opt3, opt4];
+
 var countDownTimer = 30;
 var trackScore = 0;
 
@@ -18,7 +21,11 @@ const quizz1 = {
   option2: "Application professonial intelligence",
   option3: "Application programming intel",
 };
-
+// opt1.textContent = quizz1.answer;
+// opt2.textContent = quizz1.option1;
+// opt3.textContent = quizz1.option2;
+// opt4.textContent = quizz1.option3;
+var options = [opt1, opt2, opt3, opt4];
 const quizz2 = {
   quizz: 2,
   question: "What are Arrays used for?",
@@ -48,21 +55,27 @@ const quizz4 = {
 };
 
 function timerMe() {
-  //   countDownTimer--;
-  timer.textContent = countDownTimer--;
+  // var countDown = countDownTimer--;
+  if (countDownTimer < 0) {
+    timer.style.display = "none";
+    clearInterval(timer);
+  } else {
+    timer.textContent = countDownTimer--;
+  }
 }
 
 function startQuizz() {
-  setInterval(timerMe, 1000);
   btnStart.style.display = "none";
+  setInterval(timerMe, 1000);
 }
 
-function questionWorking() {
-  for (let index = 0; index < options.length; index++) {
-    console.log(options[index]);
-    q1.appendChild(options[index]);
-  }
-}
+// Keep the questions hidden till the button is pressed
+// we want to loop the questions into the span elements
+
+// for (let i = 0; i < newArray.length; i++) {
+//   listEl.appendChild(newArray[i]);
+//   listEl.setAttribute("style", "background-color: #333333; padding: 20px;");
+// }
 
 // TODO i want these to pop on to my screen
 // TODO run these through if statement to check if answer is correct
@@ -72,7 +85,38 @@ function questionWorking() {
 // TODO Need to add a local storage for a score
 // TODO we need add classes to our index.html
 // TODO  we need to add css plus responsive
+
+var mehaha = [quizz1.option1, quizz1.option2, quizz1.option3, quizz1.answer];
+
+function questionWorking(btnCLicked = false) {
+  for (let index = 0; index < options.length; index++) {
+    // console.log(options[index]);
+    // options.push([quizz0.weekdays]);
+    var newArray = options[index];
+    // Need a condition shows when clicked
+    newArray.textContent = mehaha[index];
+    newArray.style.display = "none";
+    // newArray.style.display = "none";
+    if (btnCLicked) {
+      console.log("hi");
+      newArray.style.display = "";
+    } else {
+      // newArray.style.display = "none";
+    }
+  }
+}
+
 btnStart.addEventListener("click", function () {
   startQuizz();
-  questionWorking();
+  questionWorking(true);
+});
+console.log(optionsAll);
+optionsAll.addEventListener("click", function () {
+  console.log("YOU clicked me");
+
+  if (quizz1.answer === mehaha[3]) {
+    console.log("Nice work");
+  } else if(){
+    console.log("Your wrong");
+  }
 });
