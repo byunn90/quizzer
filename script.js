@@ -21,10 +21,7 @@ const quizz1 = {
   option2: "Application professonial intelligence",
   option3: "Application programming intel",
 };
-// opt1.textContent = quizz1.answer;
-// opt2.textContent = quizz1.option1;
-// opt3.textContent = quizz1.option2;
-// opt4.textContent = quizz1.option3;
+
 var options = [opt1, opt2, opt3, opt4];
 const quizz2 = {
   quizz: 2,
@@ -53,6 +50,8 @@ const quizz4 = {
   option2: "HTML or other markup layout",
   option3: "Color Style sheet",
 };
+// Need to keep track of scores too
+function score() {}
 
 function timerMe() {
   // var countDown = countDownTimer--;
@@ -86,37 +85,31 @@ function startQuizz() {
 // TODO we need add classes to our index.html
 // TODO  we need to add css plus responsive
 
-var mehaha = [quizz1.option1, quizz1.option2, quizz1.option3, quizz1.answer];
+var quizzQuestionsNumber1 = [
+  quizz1.option1,
+  quizz1.option2,
+  quizz1.option3,
+  quizz1.answer,
+];
 
 function questionWorking(btnCLicked = false) {
   for (let index = 0; index < options.length; index++) {
-    // console.log(options[index]);
-    // options.push([quizz0.weekdays]);
     var newArray = options[index];
-    // Need a condition shows when clicked
-    newArray.textContent = mehaha[index];
-    newArray.style.display = "none";
-    // newArray.style.display = "none";
+    // This loops my questions into the html
+    newArray.textContent = quizzQuestionsNumber1[index];
+
     if (btnCLicked) {
       console.log("hi");
       newArray.style.display = "";
     } else {
-      // newArray.style.display = "none";
+      newArray.style.display = "none";
     }
   }
 }
 
+function Quizz1correctAnswer() {}
+
 btnStart.addEventListener("click", function () {
   startQuizz();
   questionWorking(true);
-});
-console.log(optionsAll);
-optionsAll.addEventListener("click", function () {
-  console.log("YOU clicked me");
-
-  if (quizz1.answer === mehaha[3]) {
-    console.log("Nice work");
-  } else if(){
-    console.log("Your wrong");
-  }
 });
