@@ -3,27 +3,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="./style.css" />
+
     <title>My quiz Game</title>
   </head>
   <body>
     <div class="all">
       <header class="header-Question">Quizz Time</header>
       <div>
-        <h1>Score:<span class="Score"></span></h1>
-        <h1>time:<span class="Timer"></span></h1>
+        <h1 class="Score">Score:</h1>
+        <h1 class="Timer">time:</h1>
       </div>
       <div class="Questions">
-        <h1>Questions!</h1>
+        <h1 class="Questions-title">Questions!</h1>
         <div class="options">
-          <h2>1: <span class="option-1"></span></h2>
-          <h2>2: <span class="option-2"></span></h2>
-          <h2>3: <span class="option-3"></span></h2>
-          <h2>4: <span class="option-4"></span></h2>
+          <h2 class="option-1" id="choice"></h2>
+          <h2 class="option-2" id="choice"></h2>
+          <h2 class="option-3" id="choice"></h2>
+          <h2 class="option-4" id="choice"></h2>
+          <div class="correct-Wrong">hi</div>
         </div>
         <div><button class="btn-start">Start Game</button></div>
       </div>
     </div>
+
+    <script src="./script.js"></script>
   </body>
-  <script src="./script.js"></script>
 </html>

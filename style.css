@@ -2,7 +2,35 @@ body {
   background-color: #faeab1;
 }
 
+/* h2:hover {
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+} */
+
+.header-Question {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 50px;
+}
+
+h1,
+.Timer {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 50xpx;
+}
+
 h2:hover {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 50xpx;
   background-color: #04aa6d;
   border: none;
   color: white;
@@ -13,3 +41,13 @@ h2:hover {
   font-size: 16px;
   margin: 4px 2px;
 }
+/* 
+.Timer {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25px;
+  margin: 0;
+} */
+/* .options {
+  display: flex;
+} */
