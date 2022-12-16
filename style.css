@@ -27,7 +27,7 @@ h1,
   font-size: 50xpx;
 }
 
-h2:hover {
+h2 {
   display: flex;
   justify-content: space-evenly;
   font-size: 50xpx;
@@ -40,6 +40,15 @@ h2:hover {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
+}
+.Questions {
+  text-align: center;
+}
+.btn {
+  display: flex;
+  font-size: 100px;
+  width: 20%;
+  height: 20px;
 }
 /* 
 .Timer {
