@@ -10,6 +10,12 @@
   --buttons-Color: ;
 }
 
+/* .btn {
+  font-family: bold Barlow Condensed;
+  width: 194px;
+  height: 246px;
+} */
+
 body {
   padding: 0;
   margin: 0;
@@ -53,13 +59,13 @@ body {
 }
 
 .btn {
-  max-width: 100px;
+  max-width: 196px;
   max-height: 100px;
+  font-family: bold Barlow Condensed;
 }
 
 .btn:hover {
-  opacity: 2;
-  border-radius: black;
+  border: rgb(3, 14, 106);
 }
 
 #question {
@@ -74,13 +80,23 @@ body {
   padding: 10px 20px;
 }
 
-container.hide {
+.hide {
   display: none;
 }
 
-.btn,
-.btn,
-.btn,
-.btn {
+/* #btn-1,
+#btn-2,
+#btn-3,
+#btn-4 {
   width: 100px;
+  height: 100px;
+} */
+
+#time {
+  position: relative;
+  left: -173px;
+}
+#score {
+  position: relative;
+  left: -173px;
 }
