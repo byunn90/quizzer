@@ -1,4 +1,4 @@
-// Button ID
+// All my Button ID's
 var btnOne = document.getElementById("btn-1");
 var btnTwo = document.getElementById("btn-2");
 var btnThree = document.getElementById("btn-3");
@@ -8,7 +8,7 @@ var allButtons = document.getElementById("btn-1");
 var buttonStart = document.querySelector(".start-btn");
 var myButtonOptions = document.querySelectorAll(".btn");
 var questionContainer = document.getElementById("question-container");
-var questionQuestions = document.getElementById("questions");
+var questionQuestions = document.getElementById("question-title");
 var myQuestionsIndex = 0;
 var myQuestionsOptions = 0;
 var btnCycle = [btnOne, btnTwo, btnThree, btnFour];
@@ -35,6 +35,15 @@ var questionsData = [
       "A car with different",
     ],
     correctAnswer: "Cascading Style Sheet",
+    // Question 3
+    question: "Inside which HTML element do we put the JavaScript?",
+    answers: [
+      "<scripting></scripting>",
+      "<javaScript></javaScript>",
+      "<script>",
+      "<js> ",
+    ],
+    correctAnswer: "Cascading Style Sheet",
   },
 
   {
@@ -58,19 +67,19 @@ function startGame() {
 }
 
 function myQuestionsAndOptions() {
-  var currentQueston = questionsData[myQuestionsOptions];
   for (let i = 0; i < btnCycle.length; i++) {
     var questions = btnCycle[i];
 
-    questions.textContent = questionsData[myQuestionsIndex].answers[i];
-    currentQueston.textContent = questionsData[myQuestionsAndOptions].question;
+    questions.textContent = questionsData[myQuestionsOptions].answers[i];
   }
-  console.log("Hi");
 }
-function QuestionSelection() {
-  // console.log("hi");
 
+function QuestionSelection() {
+  myQuestionsOptions++;
   myQuestionsIndex++;
+  // ⬇ questions title
+  questionQuestions.textContent = questionsData[myQuestionsIndex].question;
+  // ⬇ Options Answers
   myQuestionsAndOptions();
 }
 
