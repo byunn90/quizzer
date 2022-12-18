@@ -1,3 +1,4 @@
+// My object of questions
 const questionsData = [
   {
     // Question 1
@@ -46,7 +47,7 @@ const questionsData = [
       "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
   },
 ];
-
+// Timer Variable
 let time = 30;
 
 // The timer function keeps track of the timer element from within the DOM
