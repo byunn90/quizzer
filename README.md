@@ -12,7 +12,6 @@ while stimulating interest in learnning about new subjects and topics
 HTML
 CSS
 JavaScript
-.........
 
 ## installation
 
