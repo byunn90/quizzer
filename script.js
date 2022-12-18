@@ -70,7 +70,9 @@ function timer() {
 function startGame() {
   const buttonStartWrapper = document.querySelector(".starting-button");
   const questionsContainer = document.getElementById("question-container");
+  const getName = document.getElementById("#getName");
   const startButton = document.getElementById("start-btn");
+
   startButton.addEventListener("click", () => {
     buttonStartWrapper.classList.add("hide");
     questionsContainer.classList.remove("hide");
