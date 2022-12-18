@@ -48,14 +48,14 @@ const questionsData = [
   },
 
   {
-    // Question 4
+    // Question 5
     question: "Which of these is NOT a programming language",
     answers: ["Banana", "Ruby", "Python", "Java"],
     correctAnswer: "Banana",
   },
 
   {
-    // Question 5
+    // Question 6
     question: "Who is Father of Code",
     answers: [
       "Dennis MacAlistair Ritchie",
@@ -67,7 +67,7 @@ const questionsData = [
   },
 
   {
-    // Question 5
+    // Question 7
     question: "Which is an Array",
     answers: [
       "const newArray = [1, 2, 3, 4, 5]",
@@ -79,7 +79,7 @@ const questionsData = [
   },
 
   {
-    // Question 5
+    // Question 8
     question: "Which is an function Expression",
     answers: [
       "const newArray = function() { \n console.log('Hello world!')}",
@@ -104,6 +104,7 @@ function timer() {
     timerNode.innerText = `Time: ${time}`;
     if (time === 0) {
       clearInterval(interval);
+      timerNode.innerText = "YOU FAILED";
     }
   }, 500);
 }
@@ -121,6 +122,14 @@ function startGame() {
     questionsContainer.classList.remove("hide");
     timer();
   });
+}
+// restartGame restarts the game showing the start button again and hiding question
+// Unless button start is clicked
+function restartGame() {
+  buttonStartWrapper.classList.remove("hide");
+  questionsContainer.classList.add("hide");
+  startGame();
+  timer();
 }
 
 //  The addQuestionsAndAnswers gets the buttons, the title and the score
