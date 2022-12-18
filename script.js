@@ -46,6 +46,50 @@ const questionsData = [
     correctAnswer:
       "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
   },
+
+  {
+    // Question 4
+    question: "Which of these is NOT a programming language",
+    answers: ["Banana", "Ruby", "Python", "Java"],
+    correctAnswer: "Banana",
+  },
+
+  {
+    // Question 5
+    question: "Who is Father of Code",
+    answers: [
+      "Dennis MacAlistair Ritchie",
+      "albert einstein",
+      "Charles Babbage",
+      "Håkon Wium",
+    ],
+    correctAnswer: "Dennis MacAlistair Ritchie",
+  },
+
+  {
+    // Question 5
+    question: "Which is an Array",
+    answers: [
+      "const newArray = [1, 2, 3, 4, 5]",
+      "var newArray = [1, 2, 3, 4, 5, {1, 2, 3}]",
+      "[1, 2, 3] = [1, 2, 3]",
+      "for(let i = 0; array.length; i++) {\n array[i]}",
+    ],
+    correctAnswer: "const newArray = [1, 2, 3, 4, 5]",
+  },
+
+  {
+    // Question 5
+    question: "Which is an function Expression",
+    answers: [
+      "const newArray = function() { \n console.log('Hello world!')}",
+      "function() {\n console.log('Hello World')}",
+      "return function{ \n return console.log('function expression')}",
+      "const x  = 1",
+    ],
+    correctAnswer:
+      "const newArray = function() { \n console.log('Hello world!')}",
+  },
 ];
 // Timer Variable
 let time = 30;
@@ -70,7 +114,6 @@ function timer() {
 function startGame() {
   const buttonStartWrapper = document.querySelector(".starting-button");
   const questionsContainer = document.getElementById("question-container");
-  const getName = document.getElementById("#getName");
   const startButton = document.getElementById("start-btn");
 
   startButton.addEventListener("click", () => {
