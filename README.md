@@ -1,13 +1,17 @@
 # quizzer
 
-Picture
+![alt text](./images/quizzGame.png)
 
 ## Desciption
 
-...........
+Objective of this game is increase your knowledge on Programming and excite people
+while stimulating interest in learnning about new subjects and topics
 
 ## Built With
 
+HTML
+CSS
+JavaScript
 .........
 
 ## installation
