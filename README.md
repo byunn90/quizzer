@@ -23,4 +23,7 @@ kayhanturk90@Live.com
 
 https://github.com/byunn90
 
-Finished Date: 12/19/2022
+## Update
+
+this project is still under developement will be building more and more of this project
+still have heaps more fun stuff to add into this.
