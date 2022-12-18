@@ -1,25 +1,4 @@
-// All my Button ID's
-var btnOne = document.getElementById("btn-1");
-var btnTwo = document.getElementById("btn-2");
-var btnThree = document.getElementById("btn-3");
-var btnFour = document.getElementById("btn-4");
-//
-// My time
-var myTimer = document.getElementById("time");
-//
-
-var allButtons = document.getElementById("btn-1");
-var buttonStart = document.querySelector(".start-btn");
-var myButtonOptions = document.querySelectorAll(".btn");
-var questionContainer = document.getElementById("question-container");
-var questionQuestions = document.getElementById("question-title");
-var myQuestionsIndex = -1;
-var myQuestionsOptions = -1;
-var time = 30;
-var score = 0;
-var btnCycle = [btnOne, btnTwo, btnThree, btnFour];
-
-var questionsData = [
+const questionsData = [
   {
     // Question 1
     question: "What does CSS Stand For?",
@@ -68,85 +47,86 @@ var questionsData = [
   },
 ];
 
-function startTimer() {
-  time--;
-  myTimer.textContent = time;
+let time = 30;
 
-  if (time <= 0) {
-    clearInterval(myInterval);
-    myTimer.textContent = "You failed";
-    time = 30;
-  }
+// The timer function keeps track of the timer element from within the DOM
+//  It will also change the time variable from our script
+
+function timer() {
+  const timerNode = document.getElementById("time");
+  let interval = setInterval(() => {
+    time--;
+    timerNode.innerText = `Time: ${time}`;
+    if (time === 0) {
+      clearInterval(interval);
+    }
+  }, 500);
 }
-// const myInterval = setInterval(startTimer, 1000);
-const myInterval = setInterval(startTimer);
+
+//  The startGame function will hide the start button from the DOM and show the questions
+// and also starts the timer
+
 function startGame() {
-  buttonStart.classList.add("hide");
-  questionContainer.classList.remove("hide");
-  startTimer();
-  time = 30;
-  // myQuestionsAndOptions();
-}
-
-function answer() {
-  myButtonOptions.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      myQuestionsOptions++;
-      myQuestionsIndex++;
-      for (let i = 0; i < questionsData.length; i++) {
-        // questions.textContent = questionsData[myQuestionsOptions].answers[i];
-        if (e.target.textContent === questionsData[i].correctAnswer) {
-          console.log("Correct");
-          score += 2;
-          time += 2;
-        } else {
-          console.log("Wrong");
-          return;
-          // myQuestionsOptions++;
-          // myQuestionsIndex++;
-          // increament time + 10
-          // score + 10
-          // when wrong decreament time and score
-        }
-      }
-    });
+  const buttonStartWrapper = document.querySelector(".starting-button");
+  const questionsContainer = document.getElementById("question-container");
+  const startButton = document.getElementById("start-btn");
+  startButton.addEventListener("click", () => {
+    buttonStartWrapper.classList.add("hide");
+    questionsContainer.classList.remove("hide");
+    timer();
   });
 }
 
-function myQuestionsAndOptions() {
-  for (let i = 0; i < btnCycle.length; i++) {
-    var questions = btnCycle[i];
+//  The addQuestionsAndAnswers gets the buttons, the title and the score
+//  in order to update them
+// It uses closure in order to keep track of the score and of the questionsIndex
 
-    questions.textContent = questionsData[myQuestionsOptions].answers[i];
+function addQuestionsAndAnswers() {
+  const btnOne = document.getElementById("btn-1");
+  const btnTwo = document.getElementById("btn-2");
+  const btnThree = document.getElementById("btn-3");
+  const btnFour = document.getElementById("btn-4");
+  const btnCycle = [btnOne, btnTwo, btnThree, btnFour];
+  const questionTitleSelector = document.getElementById("question-title");
+  const scoreBoard = document.getElementById("score");
+  let myQuestionsIndex = 0;
+  let score = 0;
+
+  function gameLogic() {
+    scoreBoard.innerText = `score: ${score}`;
+
+    if (myQuestionsIndex < questionsData.length) {
+      questionTitleSelector.innerText =
+        questionsData[myQuestionsIndex].question;
+
+      btnCycle.forEach((btn, index) => {
+        btn.innerText = questionsData[myQuestionsIndex].answers[index];
+        btn.addEventListener("click", updateButtons);
+
+        function updateButtons(e) {
+          e.stopImmediatePropagation();
+          if (myQuestionsIndex < questionsData.length) {
+            const isCorrect =
+              questionsData[myQuestionsIndex].correctAnswer === btn.innerText;
+            if (isCorrect) {
+              score++;
+              time += 5;
+              localStorage.setItem("score", score);
+            } else {
+              time -= 5;
+            }
+            myQuestionsIndex++;
+          }
+
+          btn.removeEventListener("click", updateButtons);
+          gameLogic();
+        }
+      });
+    }
   }
+
+  return gameLogic();
 }
 
-function nextQuestion() {
-  questionQuestions.textContent = questionsData[myQuestionsIndex].question;
-}
-answer();
-function QuestionSelection() {
-  // ⬇ Options Answers
-  if (myQuestionsOptions > 3) {
-    myQuestionsOptions = -1;
-    myQuestionsIndex = -1;
-    questionContainer.classList.add("hide");
-    buttonStart.classList.remove("hide");
-    myQuestionsAndOptions();
-  }
-
-  nextQuestion();
-  myQuestionsAndOptions();
-}
-
-buttonStart.addEventListener("click", startGame);
-
-myButtonOptions.forEach((button) =>
-  button.addEventListener("click", QuestionSelection)
-);
-
-// myButtonOptions.addEventListener("click", QuestionSelection);
-
-// this.myButtonOptions.forEach(function (item) {
-//   item.addEventListener("click", QuestionSelection);
-// });
+startGame();
+addQuestionsAndAnswers();
