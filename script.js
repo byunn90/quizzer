@@ -4,6 +4,12 @@ var btnTwo = document.getElementById("btn-2");
 var btnThree = document.getElementById("btn-3");
 var btnFour = document.getElementById("btn-4");
 //
+// var allME = myButtonOptions.classList.add(".btn");
+// console.log(allME);
+// My time
+var myTimer = document.getElementById("time");
+//
+
 var allButtons = document.getElementById("btn-1");
 var buttonStart = document.querySelector(".start-btn");
 var myButtonOptions = document.querySelectorAll(".btn");
@@ -11,8 +17,9 @@ var questionContainer = document.getElementById("question-container");
 var questionQuestions = document.getElementById("question-title");
 var myQuestionsIndex = 0;
 var myQuestionsOptions = 0;
+var time = 0;
 var btnCycle = [btnOne, btnTwo, btnThree, btnFour];
-
+console.log(myButtonOptions);
 var questionsData = [
   {
     // Question 1
@@ -34,6 +41,8 @@ var questionsData = [
       "A car has a model name, a colour, a year in which it was manufactured, an engine size and so on",
       "A car with different",
     ],
+  },
+  {
     correctAnswer: "Cascading Style Sheet",
     // Question 3
     question: "Inside which HTML element do we put the JavaScript?",
@@ -41,14 +50,14 @@ var questionsData = [
       "<scripting></scripting>",
       "<javaScript></javaScript>",
       "<script>",
-      "<js> ",
+      "<javascript> ",
     ],
     correctAnswer: "Cascading Style Sheet",
   },
 
   {
-    // Question 2
-    question: "What is a for loop?",
+    // Question 4
+    question: "What im i?",
     answers: [
       "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
       "Objects",
@@ -59,10 +68,17 @@ var questionsData = [
   },
 ];
 
+function startTimer() {
+  time++;
+  myTimer.textContent = time;
+}
+setInterval(startTimer, 1000);
+
 function startGame() {
   console.log("hi");
   buttonStart.classList.add("hide");
   questionContainer.classList.remove("hide");
+  startTimer();
   myQuestionsAndOptions();
 }
 
@@ -73,14 +89,29 @@ function myQuestionsAndOptions() {
     questions.textContent = questionsData[myQuestionsOptions].answers[i];
   }
 }
+function nextQuestion() {
+  // ⬇ questions title
+
+  questionQuestions.textContent = questionsData[myQuestionsIndex].question;
+  // if (myQuestionsIndex >= 3) {
+  //   questionContainer.classList.add("hide");
+  // }
+}
 
 function QuestionSelection() {
-  myQuestionsOptions++;
-  myQuestionsIndex++;
-  // ⬇ questions title
-  questionQuestions.textContent = questionsData[myQuestionsIndex].question;
   // ⬇ Options Answers
+  myQuestionsIndex++;
+  myQuestionsOptions++;
+  if (myQuestionsOptions > 3) {
+    myQuestionsOptions = 0;
+    myQuestionsIndex = 0;
+    questionContainer.classList.add("hide");
+    buttonStart.classList.remove("hide");
+    nextQuestion();
+    myQuestionsAndOptions();
+  }
   myQuestionsAndOptions();
+  nextQuestion();
 }
 
 buttonStart.addEventListener("click", startGame);
