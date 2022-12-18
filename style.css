@@ -85,10 +85,12 @@ body {
 }
 
 #time {
-  position: relative;
-  left: -173px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  font-family: cursive;
 }
 #score {
   position: relative;
-  left: -173px;
+  justify-content: space-around;
 }

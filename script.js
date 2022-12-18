@@ -4,8 +4,6 @@ var btnTwo = document.getElementById("btn-2");
 var btnThree = document.getElementById("btn-3");
 var btnFour = document.getElementById("btn-4");
 //
-// var allME = myButtonOptions.classList.add(".btn");
-// console.log(allME);
 // My time
 var myTimer = document.getElementById("time");
 //
@@ -15,11 +13,12 @@ var buttonStart = document.querySelector(".start-btn");
 var myButtonOptions = document.querySelectorAll(".btn");
 var questionContainer = document.getElementById("question-container");
 var questionQuestions = document.getElementById("question-title");
-var myQuestionsIndex = 0;
-var myQuestionsOptions = 0;
-var time = 0;
+var myQuestionsIndex = -1;
+var myQuestionsOptions = -1;
+var time = 30;
+var score = 0;
 var btnCycle = [btnOne, btnTwo, btnThree, btnFour];
-console.log(myButtonOptions);
+
 var questionsData = [
   {
     // Question 1
@@ -41,9 +40,9 @@ var questionsData = [
       "A car has a model name, a colour, a year in which it was manufactured, an engine size and so on",
       "A car with different",
     ],
+    correctAnswer: "Objects",
   },
   {
-    correctAnswer: "Cascading Style Sheet",
     // Question 3
     question: "Inside which HTML element do we put the JavaScript?",
     answers: [
@@ -52,34 +51,66 @@ var questionsData = [
       "<script>",
       "<javascript> ",
     ],
-    correctAnswer: "Cascading Style Sheet",
+    correctAnswer: "<script>",
   },
 
   {
     // Question 4
-    question: "What im i?",
+    question: "What is a For Loop",
     answers: [
       "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
       "Objects",
       "A car has a model name, a colour, a year in which it was manufactured, an engine size and so on",
       "A car with different",
     ],
-    correctAnswer: "Cascading Style Sheet",
+    correctAnswer:
+      "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
   },
 ];
 
 function startTimer() {
-  time++;
+  time--;
   myTimer.textContent = time;
-}
-setInterval(startTimer, 1000);
 
+  if (time <= 0) {
+    clearInterval(myInterval);
+    myTimer.textContent = "You failed";
+    time = 30;
+  }
+}
+// const myInterval = setInterval(startTimer, 1000);
+const myInterval = setInterval(startTimer);
 function startGame() {
-  console.log("hi");
   buttonStart.classList.add("hide");
   questionContainer.classList.remove("hide");
   startTimer();
-  myQuestionsAndOptions();
+  time = 30;
+  // myQuestionsAndOptions();
+}
+
+function answer() {
+  myButtonOptions.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      myQuestionsOptions++;
+      myQuestionsIndex++;
+      for (let i = 0; i < questionsData.length; i++) {
+        // questions.textContent = questionsData[myQuestionsOptions].answers[i];
+        if (e.target.textContent === questionsData[i].correctAnswer) {
+          console.log("Correct");
+          score += 2;
+          time += 2;
+        } else {
+          console.log("Wrong");
+          return;
+          // myQuestionsOptions++;
+          // myQuestionsIndex++;
+          // increament time + 10
+          // score + 10
+          // when wrong decreament time and score
+        }
+      }
+    });
+  });
 }
 
 function myQuestionsAndOptions() {
@@ -89,30 +120,33 @@ function myQuestionsAndOptions() {
     questions.textContent = questionsData[myQuestionsOptions].answers[i];
   }
 }
+
 function nextQuestion() {
-  // ⬇ questions title
-
   questionQuestions.textContent = questionsData[myQuestionsIndex].question;
-  // if (myQuestionsIndex >= 3) {
-  //   questionContainer.classList.add("hide");
-  // }
 }
-
+answer();
 function QuestionSelection() {
   // ⬇ Options Answers
-  myQuestionsIndex++;
-  myQuestionsOptions++;
   if (myQuestionsOptions > 3) {
-    myQuestionsOptions = 0;
-    myQuestionsIndex = 0;
+    myQuestionsOptions = -1;
+    myQuestionsIndex = -1;
     questionContainer.classList.add("hide");
     buttonStart.classList.remove("hide");
-    nextQuestion();
     myQuestionsAndOptions();
   }
-  myQuestionsAndOptions();
+
   nextQuestion();
+  myQuestionsAndOptions();
 }
 
 buttonStart.addEventListener("click", startGame);
-allButtons.addEventListener("click", QuestionSelection);
+
+myButtonOptions.forEach((button) =>
+  button.addEventListener("click", QuestionSelection)
+);
+
+// myButtonOptions.addEventListener("click", QuestionSelection);
+
+// this.myButtonOptions.forEach(function (item) {
+//   item.addEventListener("click", QuestionSelection);
+// });
