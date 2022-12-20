@@ -102,7 +102,7 @@ function timer() {
   let interval = setInterval(() => {
     time--;
     timerNode.innerText = `Time: ${time}`;
-    if (time === 0) {
+    if (time <= 0) {
       clearInterval(interval);
       timerNode.innerText = "YOU FAILED";
     }
@@ -125,12 +125,6 @@ function startGame() {
 }
 // restartGame restarts the game showing the start button again and hiding question
 // Unless button start is clicked
-function restartGame() {
-  buttonStartWrapper.classList.remove("hide");
-  questionsContainer.classList.add("hide");
-  startGame();
-  timer();
-}
 
 //  The addQuestionsAndAnswers gets the buttons, the title and the score
 //  in order to update them
