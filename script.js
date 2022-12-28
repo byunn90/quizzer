@@ -93,13 +93,16 @@ const questionsData = [
 ];
 // Timer Variable
 let time = 30;
+let myQuestionsIndex = 0;
+let score = 0;
+//
 
 // The timer function keeps track of the timer element from within the DOM
 //  It will also change the time variable from our script
-
+let interval;
 function timer() {
   const timerNode = document.getElementById("time");
-  let interval = setInterval(() => {
+  interval = setInterval(() => {
     time--;
     timerNode.innerText = `Time: ${time}`;
     if (time <= 0) {
@@ -111,21 +114,41 @@ function timer() {
 
 //  The startGame function will hide the start button from the DOM and show the questions
 // and also starts the timer
+const questionsContainer = document.getElementById("question-container");
+let formContainer = document.getElementById("getName");
+const submitButton = document.getElementById("btn-submit-one");
+const restartGame = document.getElementById("restart-button");
+const buttonStartWrapper = document.querySelector(".starting-button");
+const startButton = document.getElementById("start-btn");
 
 function startGame() {
-  const buttonStartWrapper = document.querySelector(".starting-button");
-  const questionsContainer = document.getElementById("question-container");
-  const startButton = document.getElementById("start-btn");
-
   startButton.addEventListener("click", () => {
     buttonStartWrapper.classList.add("hide");
     questionsContainer.classList.remove("hide");
     timer();
   });
 }
+function getName(e) {
+  e.preventDefault();
+  const text = document.querySelector(".text").value;
+  text.textContent = e.target.value;
+  localStorage.setItem("name", text);
+}
+
 // restartGame restarts the game showing the start button again and hiding question
 // Unless button start is clicked
-
+function restart(e) {
+  time = 30;
+  timer();
+  e.preventDefault();
+  questionsContainer.classList.add("hide");
+  formContainer.classList.add("hide");
+  restartGame.classList.add("hide");
+  buttonStartWrapper.classList.add("hide");
+  questionsContainer.classList.remove("hide");
+  // startGame();
+  // addQuestionsAndAnswers();
+}
 //  The addQuestionsAndAnswers gets the buttons, the title and the score
 //  in order to update them
 // It uses closure in order to keep track of the score and of the questionsIndex
@@ -165,6 +188,20 @@ function addQuestionsAndAnswers() {
               time -= 5;
             }
             myQuestionsIndex++;
+          } else {
+            myQuestionsIndex = 0;
+            score = 0;
+            // hide questions
+            questionsContainer.classList.add("hide");
+            // show form
+            formContainer.classList.remove("hide");
+            // stop timer
+            clearInterval(interval);
+            submitButton.addEventListener("click", getName);
+            // Need to restart the page from the begining
+            restartGame.classList.remove("hide");
+
+            restartGame.addEventListener("click", restart);
           }
 
           btn.removeEventListener("click", updateButtons);
