@@ -38,13 +38,13 @@ const questionsData = [
     // Question 4
     question: "What is a For Loop",
     answers: [
-      "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
+      "for loop is a control flow statement for code to repeatedly run until a certain condition has been satisfied.",
       "Objects",
       "A car has a model name, a colour, a year in which it was manufactured, an engine size and so on",
       "A car with different",
     ],
     correctAnswer:
-      "for loop is a control flow statement for specifying iteration. Specifically, a for loop functions by running a section of code repeatedly until a certain condition has been satisfied.",
+      "for loop is a control flow statement for code to repeatedly run until a certain condition has been satisfied.",
   },
 
   {
@@ -89,6 +89,54 @@ const questionsData = [
     ],
     correctAnswer:
       "const newArray = function() { \n console.log('Hello world!')}",
+  },
+
+  {
+    // Question 9
+    question: "What does HTML stand for?",
+    answers: [
+      "Hyperlinks and Text Markup Language",
+      "Home Tool Markup Language",
+      "HTML",
+      "Hyper Text Markup Language",
+    ],
+    correctAnswer: "Hyper Text Markup Language",
+  },
+
+  {
+    // Question 10
+    question: "What is the correct HTML element for inserting a line break?",
+    answers: ["<lb>", "<break>", "<li>", "<br>"],
+    correctAnswer: "<br>",
+  },
+
+  {
+    // Question 11
+    question: "Choose the correct HTML element to define emphasized text",
+    answers: ["italic", "<i>", "<em>", "<me>"],
+    correctAnswer: "<em>",
+  },
+
+  {
+    // Question 12
+    question: "How can you make a numbered list?",
+    answers: ["<ol>", "<dl>", "<list>", "ul"],
+    correctAnswer: "<ol>",
+  },
+
+  {
+    // Question 13
+    question: "Which character is used to indicate an end tag?",
+    answers: ["<", "^", "/", "*"],
+    correctAnswer: "/",
+  },
+
+  {
+    // Question 14
+    question:
+      "Which HTML element is used to specify a header for a document or section?",
+    answers: ["<head>", "<top>", "<section></section>", "<header>"],
+    correctAnswer: "<header>",
   },
 ];
 // Timer Variable

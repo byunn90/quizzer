@@ -2,7 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Barlow Condensed", "Lato";
+  font-family: "Lato", "Barlow Condensed", sans-serif;
   font-weight: bold;
 }
 * {
@@ -41,6 +41,7 @@ body {
   box-shadow: 0 0 10px 2px;
   padding-top: 20px;
   padding-bottom: 20px;
+  text-align: center;
 }
 
 .answer-buttons {
