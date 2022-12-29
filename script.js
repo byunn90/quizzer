@@ -49,7 +49,7 @@ const questionsData = [
 
   {
     // Question 5
-    question: "Which of these is NOT a programming language",
+    question: "Which is NOT a programming language",
     answers: ["Banana", "Ruby", "Python", "Java"],
     correctAnswer: "Banana",
   },
